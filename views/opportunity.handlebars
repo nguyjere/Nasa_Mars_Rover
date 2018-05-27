@@ -1,0 +1,36 @@
+<h1 class="Rover_title">Opportunity</h1>
+
+<!--Filter-->
+<form action="opportunity" method="post">
+	<fieldset>
+		<label for="camera">Camera</label> 
+			<select name="camera">
+			<option value="">ALL</option>
+			<option value="fhaz">FHAZ</option>
+			<option value="rhaz">RHAZ</option>
+			<option value="navcam">NAVCAM</option>
+			<option value="pancam">PANCAM</option>
+			<option value="minites">MINITES</option>
+			</select>
+		<label for="martian_sol">Martian Sol</label>
+			<input id="martian_sol" type="number" name="martian_sol" value="{{sol}}">
+		<label for="date">Earth Date</label>
+			<input type="date" name="date" value={{date}}>
+		<input type="submit" value="Submit">
+	</fieldset>
+</form>
+{{no_image}}
+<!--Display Photos-->
+{{#each photos}}
+<div class="gallery">
+	<a target="_blank" href={{this.img_src}}>
+		<img src={{this.img_src}}>
+	</a>
+	<div class="description">
+		<a href={{this.img_src}} download={{this.rover.name}}_{{this.camera.name}}_{{this.earth_date}}>
+		<div>{{this.camera.name}}</div>
+		<div>{{this.earth_date}}</div>
+		</a>
+	</div>
+</div>
+{{/each}}
