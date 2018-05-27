@@ -11,7 +11,7 @@ app.use(express.static('public'));
 app.set('view engine', 'handlebars');
 // app.set('port', 1244);
 var http = require('http');
-var port = process.env.port || 1337;
+var port = process.env.port || 8080;
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({extended: true})); 
 
@@ -333,6 +333,13 @@ app.use(function(err, req, res, next){
   res.status(500);
   res.render('500');
 });
+
+http.createServer(function (req, res) {
+    
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end('Hello, world!');
+    
+}).listen(process.env.PORT || 8080);
 
 app.listen(port, function(){
   console.log('Express started on http://localhost:' + port + '; press Ctrl-C to terminate.');
