@@ -9,7 +9,13 @@ var request = require('request');
 app.engine('handlebars', handlebars.engine);
 app.use(express.static('public'));
 app.set('view engine', 'handlebars');
-app.set('port', 1244);
+// app.set('port', 1244);
+var http = require('http');
+var port = process.env.port || 1337;
+http.createServer(function(req, res){
+    res.writeHead(200, {'Content-Type':'text/plain'});
+    res.end('Hello World\n');
+}).listen(port);
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({extended: true})); 
 
@@ -332,6 +338,7 @@ app.use(function(err, req, res, next){
   res.render('500');
 });
 
-app.listen(app.get('port'), function(){
+/* app.listen(app.get('port'), function(){
   console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
-});
+}); */
+
